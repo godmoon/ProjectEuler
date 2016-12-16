@@ -1,0 +1,44 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+#*.so
+#*.dylib
+#*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# moon
+*.d
+!*.d/
+*.pb.cc
+*.pb.h
+ProjectEuler
+
+# VS
+.vs
+*.sln
+*.vcxproj*
+*.filters
+*.user
+
