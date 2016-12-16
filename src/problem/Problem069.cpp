@@ -25,15 +25,13 @@
 
 #include <CppMath.h>
 
-#include <numeric>
-
 using namespace std;
 
 namespace GET_NAMESPACE_NAME(PROBLEM_NO)
 {
     // 当前模块用到的全局变量和全局函数放在此处
 
-    // 欧拉函数，直接按照定义解决吧
+    // 欧拉函数，直接按照定义解决吧，性能不给力
     uint32_t Phi(uint32_t n)
     {
         uint32_t result = 1;        // 至少有个1
@@ -48,7 +46,8 @@ namespace GET_NAMESPACE_NAME(PROBLEM_NO)
         return result;
     }
 
-    // 使用欧拉函数的性质计算欧拉函数 
+    // 使用欧拉函数的性质计算欧拉函数，具体算法可以参考维基百科:
+    // https://zh.wikipedia.org/wiki/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0
     uint32_t PhiWithAlgo(uint32_t n)
     {
         // 获得n的因数分解
