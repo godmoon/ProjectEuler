@@ -46,6 +46,7 @@ CXXFLAGS += -fPIC
 CXXFLAGS += -std=c++11 
 CXXFLAGS += -Wno-deprecated
 CXXFLAGS += -Wunused-parameter
+CXXFLAGS += -DUSE_CPP_LOG_MACRO
 CXXFLAGS += $(INC_DIR)
 
 #自动搜寻，当前项目的目标文件
