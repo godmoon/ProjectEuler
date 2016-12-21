@@ -23,6 +23,10 @@
 #include <Template.h>
 
 #include <CppMath.h>
+<<<<<<< HEAD
+=======
+#include <CppLog.h>
+>>>>>>> a5fe1b0746f219ffddac67a51dcf3645908e8ac2
 
 using namespace std;
 
@@ -57,6 +61,7 @@ GET_CLASS_NAME(PROBLEM_NO)::GET_CLASS_NAME(PROBLEM_NO)() : Problem()
 string GET_CLASS_NAME(PROBLEM_NO)::Run()
 {
     // 开THREAD_COUNT个线程做这件事
+<<<<<<< HEAD
 //     static const uint32_t THREAD_COUNT = 4;
 //     static const uint32_t COUNT = 1500000;
 //     list<thread> threads;
@@ -94,6 +99,45 @@ string GET_CLASS_NAME(PROBLEM_NO)::Run()
 // 
 //     printf("线长小于等于[%u]一共有[%u]种长度的线仅能组成1个整数直角三角形.\n", COUNT, resultSum.load());
      return CppString::ToString(0);
+=======
+    static const uint32_t THREAD_COUNT = 4;
+    static const uint32_t COUNT = 1500000;
+    list<thread> threads;
+    atomic<uint32_t> resultSum(0);
+    atomic<uint32_t> currN(3);
+
+    for (uint32_t i = 0; i < THREAD_COUNT; ++i)
+    {
+        thread th([&](uint32_t threadId)
+        {
+            uint32_t n;
+            while ((n = currN.fetch_add(1)) <= COUNT)
+            {
+                if (IsOneRightAngleTrianglePro(n))
+                {
+                    // DEBUG_LOG("%u", n);
+                    ++resultSum;
+                }
+
+                if (n % 15000 == 0)
+                {
+                    DEBUG_LOG("线程[%u]完成计算[%u],目前结果[%u].", threadId, n, resultSum.load());
+                }
+            }
+        }, i);
+
+        threads.push_back(move(th));
+    }
+
+    // 等待线程完成
+    for (auto &th : threads)
+    {
+        th.join();
+    }
+
+    printf("线长小于等于[%u]一共有[%u]种长度的线仅能组成1个整数直角三角形.\n", COUNT, resultSum.load());
+    return CppString::ToString(resultSum);
+>>>>>>> a5fe1b0746f219ffddac67a51dcf3645908e8ac2
 }
 
 /* 析构函数：做当前页面的一些资源释放工作 */

@@ -27,6 +27,7 @@
 #include <Template.h>
 
 #include <CppMath.h>
+#include <CppLog.h>
 
 using namespace std;
 
@@ -133,7 +134,7 @@ GET_CLASS_NAME(PROBLEM_NO)::GET_CLASS_NAME(PROBLEM_NO)() : Problem()
 string GET_CLASS_NAME(PROBLEM_NO)::Run()
 {
     // 开THREAD_COUNT个线程做这件事
-    static const uint32_t THREAD_COUNT = 7;
+    static const uint32_t THREAD_COUNT = 4;
     static const uint32_t COUNT = 1500000;
     list<thread> threads;
     atomic<uint32_t> resultSum(0);
@@ -154,7 +155,10 @@ string GET_CLASS_NAME(PROBLEM_NO)::Run()
 
                 if (n % 15000 == 0)
                 {
+<<<<<<< HEAD
                     // 这里不一定是正确的结果，因为可能其他线程已经修改了resultSum
+=======
+>>>>>>> a5fe1b0746f219ffddac67a51dcf3645908e8ac2
                     DEBUG_LOG("线程[%u]完成计算[%u],目前结果[%u].", threadId, n, resultSum.load());
                 }
             }
