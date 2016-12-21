@@ -1,4 +1,4 @@
-#include <ProjectEuler.h>
+#include "ProjectEuler.h"
 
 #include <unistd.h>
 
@@ -9,10 +9,13 @@
 
 #include <CppString.h>
 #include <CppTime.h>
+#include <CppLog.h>
 
 #include "Problem.h"
 
 using namespace std;
+
+CppLog cppLog;
 
 void ShowHelp(const char *programName)
 {

@@ -9,6 +9,9 @@
 #include <string>
 
 #include <CppString.h>
+#include <CppLog.h>
+
+extern CppLog cppLog;
 
 using std::map;
 using std::string;
