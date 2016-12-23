@@ -22,11 +22,7 @@
 
 #include <Template.h>
 
-#include <CppMath.h>
-<<<<<<< HEAD
-=======
 #include <CppLog.h>
->>>>>>> a5fe1b0746f219ffddac67a51dcf3645908e8ac2
 
 using namespace std;
 
@@ -34,19 +30,35 @@ namespace GET_NAMESPACE_NAME(PROBLEM_NO)
 {
     // 当前模块用到的全局变量和全局函数放在此处
 
-    uint32_t SummationsCount(uint32_t n)
+    /** 获得组合数
+    *
+    * @param 	uint32_t remainValue
+    * @param 	uint32_t maxValue
+    * @retval 	uint32_t
+    * @author 	moontan
+    */
+    uint32_t Count(uint32_t remainValue, uint32_t maxValue)
     {
-        if (n == 1)
+        // INFOR_LOG("%u,%u开始.", remainValue, maxValue);
+        if (remainValue == 0)
         {
-            return 0;
-        }
-
-        if (n == 2)
-        {
+            // INFOR_LOG("%u,%u,count[%u].", remainValue, maxValue, 0);
             return 1;
         }
 
-        return 0;
+        if (maxValue > remainValue)
+        {
+            maxValue = remainValue;
+        }
+
+        uint32_t count = 0;
+        for (uint32_t i = 1; i <= maxValue; ++i)
+        {
+            count += Count(remainValue - i, i);
+        }
+
+        // INFOR_LOG("%u,%u,count[%u].", remainValue, maxValue, count);
+        return count;
     }
 }
 
@@ -60,84 +72,11 @@ GET_CLASS_NAME(PROBLEM_NO)::GET_CLASS_NAME(PROBLEM_NO)() : Problem()
 /* 运行 */
 string GET_CLASS_NAME(PROBLEM_NO)::Run()
 {
-    // 开THREAD_COUNT个线程做这件事
-<<<<<<< HEAD
-//     static const uint32_t THREAD_COUNT = 4;
-//     static const uint32_t COUNT = 1500000;
-//     list<thread> threads;
-//     atomic<uint32_t> resultSum(0);
-//     atomic<uint32_t> currN(3);
-// 
-//     for (uint32_t i = 0; i < THREAD_COUNT; ++i)
-//     {
-//         thread th([&](uint32_t threadId)
-//         {
-//             uint32_t n;
-//             while ((n = currN.fetch_add(1)) <= COUNT)
-//             {
-//                 if (IsOneRightAngleTrianglePro(n))
-//                 {
-//                     // DEBUG_LOG("%u", n);
-//                     ++resultSum;
-//                 }
-// 
-//                 if (n % 15000 == 0)
-//                 {
-//                     DEBUG_LOG("线程[%u]完成计算[%u],目前结果[%u].", threadId, n, resultSum.load());
-//                 }
-//             }
-//         }, i);
-// 
-//         threads.push_back(move(th));
-//     }
-// 
-//     // 等待线程完成
-//     for (auto &th : threads)
-//     {
-//         th.join();
-//     }
-// 
-//     printf("线长小于等于[%u]一共有[%u]种长度的线仅能组成1个整数直角三角形.\n", COUNT, resultSum.load());
-     return CppString::ToString(0);
-=======
-    static const uint32_t THREAD_COUNT = 4;
-    static const uint32_t COUNT = 1500000;
-    list<thread> threads;
-    atomic<uint32_t> resultSum(0);
-    atomic<uint32_t> currN(3);
+    static const uint32_t NUM = 100;
+    uint32_t result = Count(NUM, NUM - 1);
 
-    for (uint32_t i = 0; i < THREAD_COUNT; ++i)
-    {
-        thread th([&](uint32_t threadId)
-        {
-            uint32_t n;
-            while ((n = currN.fetch_add(1)) <= COUNT)
-            {
-                if (IsOneRightAngleTrianglePro(n))
-                {
-                    // DEBUG_LOG("%u", n);
-                    ++resultSum;
-                }
-
-                if (n % 15000 == 0)
-                {
-                    DEBUG_LOG("线程[%u]完成计算[%u],目前结果[%u].", threadId, n, resultSum.load());
-                }
-            }
-        }, i);
-
-        threads.push_back(move(th));
-    }
-
-    // 等待线程完成
-    for (auto &th : threads)
-    {
-        th.join();
-    }
-
-    printf("线长小于等于[%u]一共有[%u]种长度的线仅能组成1个整数直角三角形.\n", COUNT, resultSum.load());
-    return CppString::ToString(resultSum);
->>>>>>> a5fe1b0746f219ffddac67a51dcf3645908e8ac2
+    printf("N=[%u]时,总共有[%u]种分法.\n", NUM, result);
+    return CppString::ToString(result);
 }
 
 /* 析构函数：做当前页面的一些资源释放工作 */
@@ -147,4 +86,9 @@ GET_CLASS_NAME(PROBLEM_NO)::~GET_CLASS_NAME(PROBLEM_NO)()
 }
 
 /*
+ ./ProjectEuler 76
+[2016-12-22 12:52:51.945177]开始运行第76题.
+N=[100]时,总共有[190569291]种分法.
+[2016-12-22 12:52:56.436532]第76题运行完毕，结果[190569291]: From start 4491355 us,from last 4491355 us
+By Moon
 */

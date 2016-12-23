@@ -155,10 +155,7 @@ string GET_CLASS_NAME(PROBLEM_NO)::Run()
 
                 if (n % 15000 == 0)
                 {
-<<<<<<< HEAD
                     // 这里不一定是正确的结果，因为可能其他线程已经修改了resultSum
-=======
->>>>>>> a5fe1b0746f219ffddac67a51dcf3645908e8ac2
                     DEBUG_LOG("线程[%u]完成计算[%u],目前结果[%u].", threadId, n, resultSum.load());
                 }
             }
