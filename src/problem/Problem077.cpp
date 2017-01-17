@@ -35,10 +35,10 @@ namespace GET_NAMESPACE_NAME(PROBLEM_NO)
 
     /** 获得素数组合数
     *
-    * @param 	uint32_t remainValue
-    * @param 	uint32_t maxValue
-    * @retval 	uint32_t
-    * @author 	moontan
+    * @param    uint32_t remainValue
+    * @param    uint32_t maxValue
+    * @retval   uint32_t
+    * @author   moontan
     */
     uint32_t PrimeCount(uint32_t remainValue, uint32_t maxValue)
     {
